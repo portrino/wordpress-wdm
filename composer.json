@@ -1,0 +1,88 @@
+{
+    "name": "portrino/wordpress-wpm",
+    "description": "Wordpress distribution for Web Developer Meetup with console and .env support",
+    "type": "project",
+    "require": {
+        "roots/wordpress": "^6.4",
+        "roots/wp-config": "^1.0",
+
+        "wpackagist-plugin/clean-image-filenames": "^1.4",
+        "wpackagist-plugin/show-environment-in-admin-bar": "^1.1",
+
+        "wpackagist-theme/twentytwentyfour": "^1.0",
+
+        "wp-cli/wp-cli-bundle": "^2.9",
+
+        "oscarotero/env": "^2.1",
+        "portrino/companienv": "^2.0",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "require-dev": {
+        "wpackagist-plugin/debug-bar": "^1.1",
+        "roave/security-advisories": "dev-latest",
+        "sensiolabs/security-advisories": "dev-master"
+    },
+    "suggest": {
+        "wpackagist-plugin/fluent-smtp": "",
+        "wpackagist-plugin/turn-comments-off": ""
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "roots/wordpress-core-installer": true
+        },
+        "bin-dir": "bin",
+        "github-protocols": [
+            "https"
+        ],
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "secure-http": true
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "[ -e ./bin/companienv ] && composer run-script pre-script:companienv || echo 'No portrino/companienv package found - trying to install now!'",
+            "[ ! -e ./bin/companienv ] && composer update portrino/companienv --no-scripts && echo '!!!' && echo 'Installed only missing required portrino/companienv package first! Please re-run composer install/ update!' && echo '!!!' && exit 1 || echo ''"
+        ],
+        "pre-update-cmd": [
+            "[ -e ./bin/companienv ] && composer run-script pre-script:companienv || echo 'No portrino/companienv package found - trying to install now!'",
+            "[ ! -e ./bin/companienv ] && composer update --no-scripts && echo '!!!' && echo 'Updated/ Installed all required packages first! Please re-run composer install to trigger post-install scripts!' && echo '!!!' && exit 1 || echo ''"
+        ],
+
+        "post-install-cmd": [
+            "/usr/bin/env bash ./config/composer/post-install.sh"
+        ],
+
+        "pre-script:companienv": [
+            "Companienv\\Composer\\ScriptHandler::run"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "public/wp-content/mu-plugins/{$name}": [
+                "type:wordpress-muplugin",
+                "wpackagist-plugin/clean-image-filenames",
+                "wpackagist-plugin/show-environment-in-admin-bar"
+            ],
+            "public/wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "public/wp-content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        },
+        "wordpress-install-dir": "public/wp-source"
+    }
+}

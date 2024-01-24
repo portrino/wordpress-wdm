@@ -1,0 +1,101 @@
+########################
+# Wordpress
+# global ignore file
+########################
+#
+# Don't ignore .rej and .orig as we want to see/clean files after conflict resolution.
+#
+# For local exclude patterns please edit .git/info/exclude.
+#
+########################
+#
+# Ignore temporary files (left by editors and OS)
+*~
+*.bak
+*.swp
+.DS_Store
+#
+# Ignore by common IDEs used directories/files
+nbproject
+*.idea
+*.project
+.buildpath
+.settings
+.TemporaryItems
+.webprj
+#
+# Ignore temporary files and folders
+.cache
+.php_cs.cache
+.sass-cache
+.session
+phantomjsdriver.log
+#
+# Ignore build stuff
+/Build/bower_components/*
+/Build/node_modules/*
+/Build/JavaScript
+/Build/typings/*
+!/Build/typings/no-def*
+#
+# Ignore TypeScript stuff
+.baseDir.ts
+.tscache
+#
+########################
+#
+# Project related
+#
+########################
+#
+# Ignore composer generated/ downloaded files
+/bin/
+/vendor/
+#
+# Ignore optional "local" environment settings
+# (e.g. any sensitive settings you do not want to commit to version control, e.g. database password)
+/config/system/environments/local.php
+/.env
+/.env.local
+#
+# Ignore everything in the webroot except wp-content/ and wp-config.php (and other project relevant stuff)
+/web/*
+!/web/wp-content/
+!/web/.htaccess
+!/web/wp-config.php
+#
+# Ignore everything in the wp-content/ directory, except the plugins/ and themes/ sub-directories
+/web/wp-content/*
+!/web/wp-content/plugins/
+!/web/wp-content/themes/
+#
+# Ignore everything in the plugins/ directory, except the plugins you specify
+/web/wp-content/plugins/*
+!/web/wp-content/plugins/my-single-file-plugin.php
+!/web/wp-content/plugins/my-directory-plugin/
+#
+# Ignore everything in the themes/ directory, except the themes you specify
+/web/wp-content/themes/*
+!/web/wp-content/themes/understrap-child/
+#
+# Ignore generated tests output
+/tests/Acceptance/tests/_output/*
+/tests/Acceptance/tests/_support/_generated/*
+#
+########################
+#
+# Hosting related
+#
+########################
+#
+# Ignore ISPconfig directories
+/error/
+/stats/
+#
+########################
+#
+# Global excludes
+#
+########################
+!**/.gitkeep
+/web/wp-content/themes/understrap-child/node_modules/
