@@ -1,0 +1,42 @@
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+# Add your own rules here.
+
+### Begin: Access ###
+
+# Access block for files
+# Apache < 2.3
+<IfModule !mod_authz_core.c>
+	<FilesMatch "(?i:^\.|^#.*#|^(?:ChangeLog|ToDo|Readme|License)(?:\.md|\.txt)?|^composer\.(?:json|lock)|\.(?:bak|co?nf|cfg|ya?ml|ts|dist|fla|in[ci]|log|sh|sql(?:\..*)?|sqlite(?:\..*)?|sw[op]|git.*|rc)|.*~)$">
+		Order allow,deny
+		Deny from all
+		Satisfy All
+	</FilesMatch>
+</IfModule>
+# Apache ≥ 2.3
+<IfModule mod_authz_core.c>
+	<If "%{REQUEST_URI} =~ m#(?i:/\.|/\x23.*\x23|/(?:ChangeLog|ToDo|Readme|License)(?:\.md|\.txt)?|/composer\.(?:json|lock)|\.(?:bak|co?nf|cfg|ya?ml|ts|dist|fla|in[ci]|log|sh|sql(?:\..*)?|sqlite(?:\..*)?|sw[op]|git.*|rc)|.*~)$#">
+		Require all denied
+	</If>
+</IfModule>
+
+# Block access to vcs directories
+<IfModule mod_alias.c>
+	RedirectMatch 404 /\.(?:git|svn|hg)/
+</IfModule>
+
+### End: Access ###

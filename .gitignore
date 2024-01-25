@@ -26,6 +26,7 @@ nbproject
 #
 # Ignore temporary files and folders
 .cache
+.commit
 .php_cs.cache
 .sass-cache
 .session
@@ -49,6 +50,7 @@ phantomjsdriver.log
 ########################
 #
 # Ignore composer generated/ downloaded files
+/auth.json
 /bin/
 /vendor/
 #
@@ -59,38 +61,25 @@ phantomjsdriver.log
 /.env.local
 #
 # Ignore everything in the webroot except wp-content/ and wp-config.php (and other project relevant stuff)
-/web/*
-!/web/wp-content/
-!/web/.htaccess
-!/web/wp-config.php
+/public/*
+!/public/wp-content/
+!/public/.htaccess
+!/public/index.php
+!/public/wp-config.php
 #
 # Ignore everything in the wp-content/ directory, except the plugins/ and themes/ sub-directories
-/web/wp-content/*
-!/web/wp-content/plugins/
-!/web/wp-content/themes/
+/public/wp-content/*
+!/public/wp-content/plugins/
+!/public/wp-content/themes/
 #
 # Ignore everything in the plugins/ directory, except the plugins you specify
-/web/wp-content/plugins/*
-!/web/wp-content/plugins/my-single-file-plugin.php
-!/web/wp-content/plugins/my-directory-plugin/
+/public/wp-content/plugins/*
+!/public/wp-content/plugins/my-single-file-plugin.php
+!/public/wp-content/plugins/my-directory-plugin/
 #
 # Ignore everything in the themes/ directory, except the themes you specify
-/web/wp-content/themes/*
-!/web/wp-content/themes/understrap-child/
-#
-# Ignore generated tests output
-/tests/Acceptance/tests/_output/*
-/tests/Acceptance/tests/_support/_generated/*
-#
-########################
-#
-# Hosting related
-#
-########################
-#
-# Ignore ISPconfig directories
-/error/
-/stats/
+/public/wp-content/themes/*
+!/public/wp-content/themes/your-child-theme/
 #
 ########################
 #
@@ -98,4 +87,3 @@ phantomjsdriver.log
 #
 ########################
 !**/.gitkeep
-/web/wp-content/themes/understrap-child/node_modules/
