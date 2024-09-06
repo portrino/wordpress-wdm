@@ -3,7 +3,7 @@
     "description": "Wordpress distribution for Web Developer Meetup with console and .env support",
     "type": "project",
     "require": {
-        "roots/wordpress": "^6.4",
+        "roots/wordpress": "^6.6",
         "roots/wp-config": "^1.0",
 
         "wpackagist-plugin/clean-image-filenames": "^1.4",
@@ -14,7 +14,7 @@
         "wp-cli/wp-cli-bundle": "^2.9",
 
         "oscarotero/env": "^2.1",
-        "portrino/companienv": "^2.0",
+        "portrino/companienv": "^4.0",
         "vlucas/phpdotenv": "^5.6"
     },
     "require-dev": {
@@ -53,12 +53,12 @@
     },
     "scripts": {
         "pre-install-cmd": [
-            "[ -e ./bin/companienv ] && composer run-script pre-script:companienv || echo 'No portrino/companienv package found - trying to install now!'",
-            "[ ! -e ./bin/companienv ] && composer update portrino/companienv --no-scripts && echo '!!!' && echo 'Installed only missing required portrino/companienv package first! Please re-run composer install/ update!' && echo '!!!' && exit 1 || echo ''"
+            "[ -e ./bin/companienv ] && composer run-script pre-script:companienv || composer update portrino/companienv --no-scripts",
+            "[ -e ./bin/companienv ] && composer run-script pre-script:companienv || echo 'No portrino/companienv package found!!!'"
         ],
         "pre-update-cmd": [
-            "[ -e ./bin/companienv ] && composer run-script pre-script:companienv || echo 'No portrino/companienv package found - trying to install now!'",
-            "[ ! -e ./bin/companienv ] && composer update --no-scripts && echo '!!!' && echo 'Updated/ Installed all required packages first! Please re-run composer install to trigger post-install scripts!' && echo '!!!' && exit 1 || echo ''"
+            "[ -e ./bin/companienv ] && composer run-script pre-script:companienv || composer update portrino/companienv --no-scripts",
+            "[ -e ./bin/companienv ] && composer run-script pre-script:companienv || echo 'No portrino/companienv package found!!!'"
         ],
 
         "post-install-cmd": [
