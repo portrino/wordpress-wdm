@@ -3,7 +3,7 @@
     "description": "Wordpress distribution for Web Developer Meetup with console and .env support",
     "type": "project",
     "require": {
-        "roots/wordpress": "^6.6",
+        "roots/wordpress": "^6.7",
         "roots/wp-config": "^1.0",
 
         "wpackagist-plugin/clean-image-filenames": "^1.4",
